@@ -1,6 +1,9 @@
 import {AbstractPage} from "./AbstractPage";
 import {Locator, Page} from "@playwright/test";
 
+/**
+ * Класс с елементами по созданию контрагентов
+ */
 export class CagentCreatePage extends AbstractPage {
 
     public readonly cagentType: Locator;

@@ -1,6 +1,9 @@
 import {Locator, Page} from "@playwright/test";
 import {AbstractPage} from "./AbstractPage";
 
+/**
+ * Класс с елементами логин-страницы
+ */
 export class LoginPage extends AbstractPage {
     readonly loginButton: Locator;
     readonly username: Locator;
@@ -13,6 +16,9 @@ export class LoginPage extends AbstractPage {
         this.password = this.page.locator('#password');
     }
 
+    /**
+     * Метод с готовыми кредешелами для входа
+     */
     public async login(username: string = 'admin', password: string = 'admin1'): Promise<void> {
         await this.page.goto(process.env.STARTUP_URL);
         await this.username.fill(username);
