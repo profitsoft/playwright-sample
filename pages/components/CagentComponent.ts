@@ -9,6 +9,8 @@ export class CagentComponent extends AbstractPage {
     public readonly inn: Locator;
     public readonly birthDate: Locator;
     public readonly phoneNumber: Locator;
+    public readonly cagentrelatedPersonAttributes: Locator;
+    public readonly cagentTypeDetailed: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -18,6 +20,8 @@ export class CagentComponent extends AbstractPage {
         this.inn = this.page.locator(`input[id$='inn']`);
         this.birthDate = this.page.locator(`input[id$='birthDateInputDate']`);
         this.phoneNumber = this.page.locator(`input[id$='phoneFullNumber']`);
+        this.cagentrelatedPersonAttributes = this.page.locator('#cagentForm\\:cagentrelatedPersonAttributes');
+        this.cagentTypeDetailed = this.page.locator('#cagentForm\\:cagentcagentTypeDetailed');
     }
 
 }

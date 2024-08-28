@@ -1,4 +1,4 @@
-import {Page} from "@playwright/test";
+import {expect, Page} from "@playwright/test";
 
 export class AbstractPage {
     protected readonly page: Page;
@@ -10,12 +10,16 @@ export class AbstractPage {
     }
 
     public async isCurrentPage(pageString: string = ''): Promise<void> {
-        const currentPage: string = await this.page.inputValue(`[id='org.springframework.webflow.CurrentPage']`);
-
         pageString = pageString || this.pageString;
+        let currentPage = '';
 
-        if (currentPage !== pageString) {
-            throw new Error(`Page has not been downloaded in configured time or ${currentPage} not equals ${pageString}`);
-        }
+        await expect.poll(async () => {
+            currentPage =  await this.page.inputValue(`[id='org.springframework.webflow.CurrentPage']`);
+            return currentPage;
+        }, {
+            message: `Page has not been downloaded in configured time or ${currentPage} not equals ${pageString}`,
+            timeout: 100000, // Максимальний час очікування (10 секунд)
+            intervals: [1000] // Інтервали між перевірками (1 секунда)
+        }).toBe(pageString);
     }
 }
