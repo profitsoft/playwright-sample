@@ -1,6 +1,9 @@
 import {AbstractPage} from "./AbstractPage";
 import {Locator, Page} from "@playwright/test";
 
+/**
+ * Класс с елементами в режиме редактирования контрагентов
+ */
 export class CagentEditPage extends AbstractPage {
 
     public readonly saveButton: Locator;

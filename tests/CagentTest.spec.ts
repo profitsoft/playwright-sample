@@ -6,6 +6,9 @@ test.beforeEach('Auth', async ({page}) => {
     await app.loginPage.login();
 });
 
+/**
+ * Тест переходит в модуль "Контрагенты - Поиск", создает и сохраняет контрагента
+ */
 test('Cagent test', async ({page}) => {
     const app: Application = new Application(page);
 

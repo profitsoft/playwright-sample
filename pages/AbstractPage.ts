@@ -1,5 +1,8 @@
 import {expect, Page} from "@playwright/test";
 
+/**
+ * Базовый класс объектов
+ */
 export class AbstractPage {
     protected readonly page: Page;
     protected readonly pageString: string;
@@ -9,6 +12,9 @@ export class AbstractPage {
         this.pageString = pageString;
     }
 
+    /**
+     * Метод, который проверяет, является ли текущая страница той, которая ожидается
+     */
     public async isCurrentPage(pageString: string = ''): Promise<void> {
         pageString = pageString || this.pageString;
         let currentPage = '';

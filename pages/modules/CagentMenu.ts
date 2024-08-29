@@ -13,6 +13,9 @@ export class CagentMenu extends AbstractPage {
         this.searchCagentMenu = this.page.locator('#cagentSearchMenuLink');
     }
 
+    /**
+     * Переход в модуль Контрагенты - Поиск
+     */
     public async menuCagentSearch(): Promise<void> {
         await this.cagentMenu.click();
         await this.searchCagentMenu.click();
