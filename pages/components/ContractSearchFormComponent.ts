@@ -18,7 +18,7 @@ export class ContractSearchFormComponent extends AbstractPage {
     }
 
     /**
-     * Метод для клика на первый элемент в таблице по ID на поиске договоров
+     * Method to click on the first element in the table by ID in the contract search
      */
     public async clickFirstElementInTable(selector: string): Promise<void> {
         const element = this.page.locator(selector).first();

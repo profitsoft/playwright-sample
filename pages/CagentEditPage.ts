@@ -2,7 +2,7 @@ import {AbstractPage} from "./AbstractPage";
 import {Locator, Page} from "@playwright/test";
 
 /**
- * Класс с елементами в режиме редактирования контрагентов
+ * Class with elements in the counterparty editing mode
  */
 export class CagentEditPage extends AbstractPage {
 

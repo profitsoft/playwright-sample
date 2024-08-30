@@ -1,7 +1,7 @@
 import {expect, Page} from "@playwright/test";
 
 /**
- * Базовый класс объектов
+ * Base class of objects
  */
 export class AbstractPage {
     protected readonly page: Page;
@@ -13,7 +13,7 @@ export class AbstractPage {
     }
 
     /**
-     * Метод, который проверяет, является ли текущая страница той, которая ожидается
+     * Method that checks whether the current page is the expected one
      */
     public async isCurrentPage(pageString: string = ''): Promise<void> {
         pageString = pageString || this.pageString;
@@ -24,8 +24,8 @@ export class AbstractPage {
             return currentPage;
         }, {
             message: `Page has not been downloaded in configured time or ${currentPage} not equals ${pageString}`,
-            timeout: 100000, // Максимальний час очікування (10 секунд)
-            intervals: [1000] // Інтервали між перевірками (1 секунда)
+            timeout: 100000, // Maximum wait time (10 seconds)
+            intervals: [1000] // Intervals between checks (1 second)
         }).toBe(pageString);
     }
 }

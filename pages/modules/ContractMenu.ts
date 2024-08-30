@@ -13,7 +13,7 @@ export class ContractMenu extends AbstractPage {
     }
 
     /**
-     * Переход в модуль Договора - Поиск
+     * Navigation to the Contracts module - Search
      */
     public async menuContractSearch(): Promise<void> {
         await this.contractMenu.click();

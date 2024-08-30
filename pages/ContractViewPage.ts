@@ -2,7 +2,7 @@ import {Locator, Page} from "@playwright/test";
 import {AbstractPage} from "./AbstractPage";
 
 /**
- * Страница просмотра договоров
+ * Contract viewing page
  */
 export class ContractViewPage extends AbstractPage {
 
@@ -23,21 +23,21 @@ export class ContractViewPage extends AbstractPage {
     }
 
     /**
-     * Метод для перехода на вкладку "Контрагенты" на просмотре договора
+     * Method to navigate to the "Counterparties" tab on the contract viewing page
      */
     public async clickCagentTab(): Promise<void> {
         await this.cagentTabContract.click();
     }
 
     /**
-     * Метод для получения полного ФИО
+     * Method to get the full name
      */
     public async getFullName(): Promise<string> {
         return await this.fioLink.innerText();
     }
 
     /**
-     * Метод для получения номера договора
+     * Method to get the contract number
      */
     public async getContractNumber(): Promise<string> {
         return await this.numberLink.innerText();

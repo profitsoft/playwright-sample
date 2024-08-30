@@ -7,7 +7,7 @@ test.beforeEach('Auth', async ({page}) => {
 });
 
 /**
- * Тест переходит в модуль "Контрагенты - Поиск", создает и сохраняет контрагента
+ * Test navigates to the "Counterparties - Search" module, creates, and saves a counterparty
  */
 test('Cagent test', async ({page}) => {
     const app: Application = new Application(page);

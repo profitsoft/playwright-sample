@@ -2,7 +2,7 @@ import {AbstractPage} from "./AbstractPage";
 import {Locator, Page} from "@playwright/test";
 
 /**
- * Класс с елементами по созданию контрагентов
+ * Class with elements for creating counterparties
  */
 export class CagentCreatePage extends AbstractPage {
 
