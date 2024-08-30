@@ -8,12 +8,13 @@ export class AssertFieldUtil {
     }
 
     /**
-     * Метод проверяет присутствие двух полей в одной строке, то есть, то, что на против названия поля verifiedField
-     * указано значение valueField (полное совпадение). ValueField может находится в любом месте строки относительно
-     * проверяемого поля - вторым, третим и т. д. Проверяется именно наличие значения в строке.
-     * @param verifiedField - проверяемое поле;
-     * @param valueField - значение (полное совпадение), из тойже строки, что и поле verifiedField.
+     * Method checks the presence of two fields in the same row, i.e., verifies that the value next to the field named `verifiedField`
+     * matches exactly the value specified in `valueField`. `ValueField` can be located anywhere in the row relative to the
+     * `verifiedField` — as the second, third, etc. The method checks for the presence of the value in the row.
+     * @param verifiedField - the field to be checked;
+     * @param valueField - the value (exact match) expected in the same row as the `verifiedField`.
      */
+
     public async assertFieldsComplies(verifiedField: string, valueField: string) {
         const xPathes: string[] = [
             `//*[contains(text(), '${verifiedField}')]/ancestor-or-self::td[1]/parent::tr/child::td`,

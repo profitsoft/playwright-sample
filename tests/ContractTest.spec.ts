@@ -7,7 +7,8 @@ test.beforeEach('Auth', async ({page}) => {
 });
 
 /**
- * Договора - Поиск. Ввод значений на фильтр, переход к найденому договору, проверка полей на соответствие введенных в фильтр поиска
+ * Contracts - Search. Enter filter values, navigate to the found contract,
+ * and verify that the fields match the entered search filter values
  */
 test('Find_contract', async ({page}) => {
     const app: Application = new Application(page);

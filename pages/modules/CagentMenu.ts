@@ -3,7 +3,9 @@ import {AbstractPage} from "../AbstractPage";
 
 export class CagentMenu extends AbstractPage {
 
-    // Селектор главного меню "Контрагенты"
+    /**
+     * Selector for the main menu "Counterparties"
+      */
     public readonly cagentMenu: Locator;
     private readonly searchCagentMenu: Locator;
 
@@ -14,7 +16,7 @@ export class CagentMenu extends AbstractPage {
     }
 
     /**
-     * Переход в модуль Контрагенты - Поиск
+     * Navigation to the Counterparties module - Search.
      */
     public async menuCagentSearch(): Promise<void> {
         await this.cagentMenu.click();
