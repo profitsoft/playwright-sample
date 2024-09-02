@@ -1,37 +1,44 @@
-import {expect, test} from "@playwright/test";
-import {Application} from "../Application";
+import {expect, test as baseTest} from "@playwright/test";
+import {test} from "../setup.playwright";
 
-test.beforeEach('Auth', async ({page}) => {
-    const app = new Application(page);
-    await app.loginPage.login();
+test.beforeEach('Auth', async ({loginPage}) => {
+    await loginPage.login();
 });
 
 /**
  * Test navigates to the "Counterparties - Search" module, creates, and saves a counterparty
  */
-test('Cagent test', async ({page}) => {
-    const app: Application = new Application(page);
+test('Cagent test', async ({
+                               menuSelectModulePage,
+                               cagentListPage,
+                               cagentCreatePage,
+                               cagentEditPage,
+                               cagentViewPage,
+                               assertFieldUtil
+                           }) => {
 
-    await app.menuSelectModulePage.cagentMenu.menuCagentSearch();
+    await menuSelectModulePage.cagentMenu.menuCagentSearch();
 
-    await app.cagentSearchFormComponent.createCagentButton.click();
-    await app.cagentCreatePage.cagentType.selectOption('Клиент');
-    await app.cagentCreatePage.next.click();
+    await cagentListPage.cagentSearchForm.clickCreateCagentButton();
+    await cagentCreatePage.selectCagentType('Клиент');
+    await cagentCreatePage.clickNext();
 
-    await app.cagentComponent.name.fill('Евгений');
-    await app.cagentComponent.surname.fill('Кропевницкий');
-    await app.cagentComponent.patronymic.fill('Владимирович');
-    await app.cagentComponent.birthDate.fill('29.11.1979')
-    await app.cagentComponent.inn.fill('5642894563');
-    await app.cagentComponent.phoneNumber.fill('380577526492');
-    await app.cagentComponent.cagentrelatedPersonAttributes.selectOption(`1 - Пов'язана особа`);
-    await app.cagentComponent.cagentTypeDetailed.selectOption(`20 - Перестрахувальник`);
-    await app.cagentEditPage.saveButton.click();
+    await cagentEditPage.cagentComponent.fillFields({
+        surname: 'Кропевницкий',
+        name: 'Евгений',
+        patronymic: 'Владимирович',
+        inn: '5642894563',
+        birthDate: '29.11.1979',
+        phoneNumber: '380577526492',
+        cagentRelatedPersonAttributes: `1 - Пов'язана особа`,
+        cagentTypeDetailed: `20 - Перестрахувальник`
+    });
+    await cagentEditPage.clickSave();
 
-    await app.cagentEditPage.cagentType.selectOption('3- Базовий');
-    await expect(app.cagentEditPage.cagentType.locator('option[selected="selected"]')).toHaveText('3- Базовий');
-    await app.cagentEditPage.saveButton.click();
+    await cagentEditPage.selectCagentType('3- Базовий');
+    await expect(cagentEditPage.getSelectedCagentType()).toHaveText('3- Базовий');
+    await cagentEditPage.clickSave();
 
-    await app.cagentViewPage.isCurrentPage();
-    await app.assertFieldUtil.assertFieldsCompliesDiv('ФИО:', 'Кропевницкий Евгений Владимирович');
+    await cagentViewPage.isCurrentPage();
+    await assertFieldUtil.assertFieldsCompliesDiv('ФИО:', 'Кропевницкий Евгений Владимирович');
 });
