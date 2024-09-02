@@ -1,5 +1,5 @@
 import {Locator, Page} from "@playwright/test";
-import {AbstractPage} from "./AbstractPage";
+import {AbstractPage} from "../AbstractPage";
 
 /**
  * Contract viewing page
@@ -18,8 +18,6 @@ export class ContractViewPage extends AbstractPage {
         this.fioLink = this.page.locator('#contractForm\\:fio');
         // Номер договора
         this.numberLink = this.page.locator('#contractForm\\:numberLinkId');
-
-
     }
 
     /**

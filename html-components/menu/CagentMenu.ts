@@ -1,5 +1,5 @@
 import {Locator, Page} from "@playwright/test";
-import {AbstractPage} from "../AbstractPage";
+import {AbstractPage} from "../../pages/AbstractPage";
 
 export class CagentMenu extends AbstractPage {
 

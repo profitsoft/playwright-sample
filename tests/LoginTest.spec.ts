@@ -1,16 +1,13 @@
-import {test, expect} from '@playwright/test';
-import {Application} from "../Application";
+import {test} from "../setup.playwright";
 
 
-test('Login test', async ({page}) => {
-    const app: Application = new Application(page);
-
+test('Login test', async ({page, loginPage, myDocsPage}) => {
     await page.goto(process.env.STARTUP_URL);
-    await app.loginPage.username.fill('admin');
-    await app.loginPage.password.fill('admin1');
-    await app.loginPage.loginButton.click();
+    await loginPage.username.fill('admin');
+    await loginPage.password.fill('admin1');
+    await loginPage.loginButton.click();
 
-    await app.myDocsPage.isCurrentPage();
+    await myDocsPage.isCurrentPage();
 });
 
 
