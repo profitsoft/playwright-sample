@@ -1,17 +1,34 @@
 import {AbstractPage} from "../../pages/AbstractPage";
 import {Locator, Page} from "@playwright/test";
 
+/**
+ * Class to work with the 'Counterparty' component
+ * This class contains methods to work with the fields of the 'Counterparty' component
+ */
 export class CagentComponent extends AbstractPage {
 
-    type
-
+    // Field 'Surname
     public readonly surname: Locator;
+
+    // Field 'Name'
     public readonly name: Locator;
+
+    // Field 'Patronymic'
     public readonly patronymic: Locator;
+
+    // Field 'INN'
     public readonly inn: Locator;
+
+    // Field 'Birth date'
     public readonly birthDate: Locator;
+
+    // Field 'Phone number'
     public readonly phoneNumber: Locator;
+
+    // Field 'Cagent related person attributes'
     public readonly cagentRelatedPersonAttributes: Locator;
+
+    // Field 'Cagent type detailed'
     public readonly cagentTypeDetailed: Locator;
 
     constructor(page: Page) {
@@ -27,9 +44,16 @@ export class CagentComponent extends AbstractPage {
     }
 
     /**
-     * Method to fill in the fields of the "Counterparty" component
+     * Fill in the fields of the "Counterparty" form
      *
-     * @param fields
+     * @param fields.surname - surname of the counterparty
+     * @param fields.name - name of the counterparty
+     * @param fields.patronymic - patronymic of the counterparty
+     * @param fields.inn - INN of the counterparty
+     * @param fields.birthDate - birth date of the counterparty
+     * @param fields.phoneNumber - phone number of the counterparty
+     * @param fields.cagentRelatedPersonAttributes - related person attributes of the counterparty
+     * @param fields.cagentTypeDetailed - detailed type of the counterparty
      */
     public async fillFields(fields: {
         surname: string,

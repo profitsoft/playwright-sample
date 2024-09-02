@@ -1,15 +1,19 @@
 import {Page} from "@playwright/test";
 import {CagentMenu} from "../html-components/menu/CagentMenu";
 import {ContractMenu} from "../html-components/menu/ContractMenu"
+import {AbstractPage} from "./AbstractPage";
 
 
-export class MenuSelectModulePage {
-    readonly page: Page;
-    readonly cagentMenu: CagentMenu;
-    readonly contractMenu: ContractMenu;
+export class MenuSelectModulePage extends AbstractPage {
+
+    // Menu for Counterparties
+    public readonly cagentMenu: CagentMenu;
+
+    // Menu Contracts
+    public readonly contractMenu: ContractMenu;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.cagentMenu = new CagentMenu(this.page);
         this.contractMenu = new ContractMenu(this.page);
     }

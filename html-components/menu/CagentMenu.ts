@@ -3,10 +3,10 @@ import {AbstractPage} from "../../pages/AbstractPage";
 
 export class CagentMenu extends AbstractPage {
 
-    /**
-     * Selector for the main menu "Counterparties"
-      */
+    // Button 'Counterparties' for navigation to the Counterparties module
     public readonly cagentMenu: Locator;
+
+    // Button 'Search' for navigation to the Counterparties module - Search
     private readonly searchCagentMenu: Locator;
 
     constructor(page: Page) {
