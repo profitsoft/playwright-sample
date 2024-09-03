@@ -27,7 +27,7 @@ test('Find_contract', async ({
     );
     await contractListPage.contractSearchForm.clickSearch();
 
-    await contractListPage.contractSearchForm.clickElementInTable(1);
+    await contractListPage.clickElementInTable(1);
     await contractViewPage.isCurrentPage();
     expect(contractViewPage.getContractNumber()).toBe('АС-0000076');
     await assertFieldUtil.assertFieldsComplies('Дата и место подписания договора:', '21.08.2024');

@@ -1,9 +1,10 @@
-import {expect, Page} from "@playwright/test";
+import {expect, Locator, Page} from "@playwright/test";
 
 /**
  * Base class of objects
  */
 export class AbstractPage {
+
     protected readonly page: Page;
     protected readonly pageString: string;
 

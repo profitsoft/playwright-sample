@@ -1,11 +1,12 @@
 import {AbstractPage} from "../../pages/AbstractPage";
 import {Locator, Page} from "@playwright/test";
+import AbstractHtmlComponent from "../AbstractHtmlComponent";
 
 /**
  * Class to work with the 'Counterparty' component
  * This class contains methods to work with the fields of the 'Counterparty' component
  */
-export class CagentComponent extends AbstractPage {
+export class CagentComponent extends AbstractHtmlComponent {
 
     // Field 'Surname
     public readonly surname: Locator;
@@ -56,22 +57,38 @@ export class CagentComponent extends AbstractPage {
      * @param fields.cagentTypeDetailed - detailed type of the counterparty
      */
     public async fillFields(fields: {
-        surname: string,
-        name: string,
-        patronymic: string,
-        inn: string,
-        birthDate: string,
-        phoneNumber: string,
-        cagentRelatedPersonAttributes: string,
-        cagentTypeDetailed: string
+        surname?: string,
+        name?: string,
+        patronymic?: string,
+        inn?: string,
+        birthDate?: string,
+        phoneNumber?: string,
+        cagentRelatedPersonAttributes?: string,
+        cagentTypeDetailed?: string
     }) {
-        await this.surname.fill(fields.surname || '');
-        await this.name.fill(fields.name || '');
-        await this.patronymic.fill(fields.patronymic || '');
-        await this.inn.fill(fields.inn || '');
-        await this.birthDate.fill(fields.birthDate || '');
-        await this.phoneNumber.fill(fields.phoneNumber || '');
-        await this.cagentRelatedPersonAttributes.selectOption(fields.cagentRelatedPersonAttributes || 'Выберите');
-        await this.cagentTypeDetailed.selectOption(fields.cagentTypeDetailed || 'Выберите');
+        if (fields.surname) {
+            await this.surname.fill(fields.surname);
+        }
+        if (fields.name) {
+            await this.name.fill(fields.name);
+        }
+        if (fields.patronymic) {
+            await this.patronymic.fill(fields.patronymic);
+        }
+        if (fields.inn) {
+            await this.inn.fill(fields.inn);
+        }
+        if (fields.birthDate) {
+            await this.birthDate.fill(fields.birthDate);
+        }
+        if (fields.phoneNumber) {
+            await this.phoneNumber.fill(fields.phoneNumber);
+        }
+        if (fields.cagentRelatedPersonAttributes) {
+            await this.cagentRelatedPersonAttributes.selectOption(fields.cagentRelatedPersonAttributes);
+        }
+        if (fields.cagentTypeDetailed) {
+            await this.cagentTypeDetailed.selectOption(fields.cagentTypeDetailed);
+        }
     };
 }
