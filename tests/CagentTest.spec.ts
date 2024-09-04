@@ -101,3 +101,83 @@ test('Check responsible person', async ({
     await cagentViewPage.isCurrentPage();
     expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName(1)).toBe('Евтушенко Петр Иванович');
 });
+
+/** The test navigates to the "Directories - Contractors - Search" module and adds a new client with an 11-digit INN,
+ *  checking the validation. It then adds another client with a 9-digit INN and also checks the validation.
+ *  Finally, it adds a client with a 10-digit INN and checks the checksum validation during saving. */
+
+test('Check inn validation', async ({
+                                        menuSelectModulePage,
+                                        cagentListPage,
+                                        cagentCreatePage,
+                                        cagentEditPage,
+                                    }) => {
+    // Navigate to the "Counterparties - Search" module
+    await menuSelectModulePage.cagentMenu.menuCagentSearch();
+
+    // Click the "Create" button and select the counterparty type
+    await cagentListPage.cagentSearchForm.clickCreateCagentButton();
+    await cagentCreatePage.selectCagentType('Клиент');
+    await cagentCreatePage.clickNext();
+
+    // Fill 11-digit INN to check validation
+    await cagentEditPage.cagentComponent.fillFields({
+        surname: 'Кропевницкий',
+        name: 'Евгений',
+        patronymic: 'Семенович',
+        inn: '56428945636',
+        birthDate: '29.11.1979',
+        phoneNumber: '380577526492',
+        cagentRelatedPersonAttributes: `1 - Пов'язана особа`,
+        cagentTypeDetailed: `20 - Перестрахувальник`
+    });
+    await cagentEditPage.clickSave();
+
+    // Get the error message about the INN
+    await cagentEditPage.getGlobalMessages().assertErrors([`Введите, пожалуйста, значение поля 'ИНН' для контрагента правильно. Номер должен состоять из 10 цифр.`]);
+
+    // Fill 9-digit INN to check validation
+    await cagentEditPage.cagentComponent.fillFields({inn: '428945636'});
+    await cagentEditPage.clickSave();
+
+    // Get the error message about the INN
+    await cagentEditPage.getGlobalMessages().assertErrors([`Введите, пожалуйста, значение поля 'ИНН' для контрагента правильно. Номер должен состоять из 10 цифр.`]);
+
+    // Enter 10-digit INN and check the checksum validation
+    await cagentEditPage.cagentComponent.fillFields({inn: '5642894333'});
+    await cagentEditPage.clickSave();
+
+    await cagentEditPage.getGlobalMessages().assertWarnings([`Введенный ИНН не является действительным налоговым номером (проверка контрольной суммы не пройдена).`]);
+});
+
+/** The test creates an employee with a non-corporate email and checks the validation. */
+test('Create company member email validation', async ({
+                                                            menuSelectModulePage,
+                                                            cagentListPage,
+                                                            cagentCreatePage,
+                                                            cagentEditPage,
+                                                      }) => {
+    // Navigate to the "Counterparties - Search" module
+    await menuSelectModulePage.cagentMenu.menuCagentSearch();
+
+    // Click the "Create" button and select the counterparty type
+    await cagentListPage.cagentSearchForm.clickCreateCagentButton();
+    await cagentCreatePage.selectCagentType('Сотрудник компании');
+    await cagentCreatePage.clickNext();
+
+    // Fill 11-digit INN to check validation
+    await cagentEditPage.cagentComponent.fillFields({
+        surname: 'Кропевницкий',
+        name: 'Евгений',
+        patronymic: 'Семенович',
+        inn: '5642894333',
+        birthDate: '29.11.1979',
+        phoneNumber: '380577526492',
+        cagentRelatedPersonAttributes: `1 - Пов'язана особа`,
+        cagentTypeDetailed: `20 - Перестрахувальник`,
+        email: 'valed@gmail.com'
+    });
+    await cagentEditPage.clickSave();
+
+    await cagentEditPage.getGlobalMessages().assertErrors([`Необходимо использовать корпоративный e-mail.`]);
+});

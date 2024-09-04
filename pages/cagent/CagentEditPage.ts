@@ -58,7 +58,7 @@ export class CagentEditPage extends AbstractPage {
      * Click the 'Save' button
      */
     public async clickSave() {
-        await this.saveButton.click();
+        await this.saveButton.click({delay: 800});
     }
 
     /**

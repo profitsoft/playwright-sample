@@ -32,6 +32,9 @@ export class CagentComponent extends AbstractHtmlComponent {
     // Field 'Cagent type detailed'
     public readonly cagentTypeDetailed: Locator;
 
+    // Field 'Email'
+    public readonly email: Locator;
+
     constructor(page: Page) {
         super(page);
         this.surname = this.page.locator(`input[id$='surname']`);
@@ -42,6 +45,7 @@ export class CagentComponent extends AbstractHtmlComponent {
         this.phoneNumber = this.page.locator(`input[id$='phoneFullNumber']`);
         this.cagentRelatedPersonAttributes = this.page.locator('#cagentForm\\:cagentrelatedPersonAttributes');
         this.cagentTypeDetailed = this.page.locator('#cagentForm\\:cagentcagentTypeDetailed');
+        this.email = this.page.locator(`#cagentForm\\:cagentpersonContactemail`);
     }
 
     /**
@@ -55,6 +59,7 @@ export class CagentComponent extends AbstractHtmlComponent {
      * @param fields.phoneNumber - phone number of the counterparty
      * @param fields.cagentRelatedPersonAttributes - related person attributes of the counterparty
      * @param fields.cagentTypeDetailed - detailed type of the counterparty
+     * @param fields.email - email of the counterparty
      */
     public async fillFields(fields: {
         surname?: string,
@@ -64,7 +69,8 @@ export class CagentComponent extends AbstractHtmlComponent {
         birthDate?: string,
         phoneNumber?: string,
         cagentRelatedPersonAttributes?: string,
-        cagentTypeDetailed?: string
+        cagentTypeDetailed?: string,
+        email?: string
     }) {
         if (fields.surname) {
             await this.surname.fill(fields.surname);
@@ -89,6 +95,9 @@ export class CagentComponent extends AbstractHtmlComponent {
         }
         if (fields.cagentTypeDetailed) {
             await this.cagentTypeDetailed.selectOption(fields.cagentTypeDetailed);
+        }
+        if (fields.email) {
+            await this.email.fill(fields.email);
         }
     };
 }
