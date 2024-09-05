@@ -29,7 +29,7 @@ export default class ContactPersonsTab extends AbstractHtmlComponent {
      * Get the responsible person name
      * @param index - index of the responsible person
      */
-    public async getResponsiblePersonName(index: number = 1) {
+    public async getResponsiblePersonName(index: number = 0) {
         return await this.responsiblePersonName.nth(index).innerText();
     }
 

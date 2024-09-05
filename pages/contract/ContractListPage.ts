@@ -20,6 +20,8 @@ export class ContractListPage extends AbstractPage {
      * @param index - index of the element in the table
      */
     public async clickElementInTable(index: number = 0) {
-        await this.page.locator(`td.TABELLEFIRST a`).nth(index).click();
+        await this.page.locator(`td.TABELLEFIRST a`)
+            .nth(index)
+            .click({timeout: 5000});
     }
 }
