@@ -1,11 +1,12 @@
 import {AbstractPage} from "../../pages/AbstractPage";
 import {Locator, Page} from "@playwright/test";
+import AbstractHtmlComponent from "../AbstractHtmlComponent";
 
 /**
  * Class to work with the 'Counterparty' component
  * This class contains methods to work with the fields of the 'Counterparty' component
  */
-export class CagentComponent extends AbstractPage {
+export class CagentComponent extends AbstractHtmlComponent {
 
     // Field 'Surname
     public readonly surname: Locator;
@@ -31,6 +32,9 @@ export class CagentComponent extends AbstractPage {
     // Field 'Cagent type detailed'
     public readonly cagentTypeDetailed: Locator;
 
+    // Field 'Email'
+    public readonly email: Locator;
+
     constructor(page: Page) {
         super(page);
         this.surname = this.page.locator(`input[id$='surname']`);
@@ -41,6 +45,7 @@ export class CagentComponent extends AbstractPage {
         this.phoneNumber = this.page.locator(`input[id$='phoneFullNumber']`);
         this.cagentRelatedPersonAttributes = this.page.locator('#cagentForm\\:cagentrelatedPersonAttributes');
         this.cagentTypeDetailed = this.page.locator('#cagentForm\\:cagentcagentTypeDetailed');
+        this.email = this.page.locator(`#cagentForm\\:cagentpersonContactemail`);
     }
 
     /**
@@ -54,24 +59,45 @@ export class CagentComponent extends AbstractPage {
      * @param fields.phoneNumber - phone number of the counterparty
      * @param fields.cagentRelatedPersonAttributes - related person attributes of the counterparty
      * @param fields.cagentTypeDetailed - detailed type of the counterparty
+     * @param fields.email - email of the counterparty
      */
     public async fillFields(fields: {
-        surname: string,
-        name: string,
-        patronymic: string,
-        inn: string,
-        birthDate: string,
-        phoneNumber: string,
-        cagentRelatedPersonAttributes: string,
-        cagentTypeDetailed: string
+        surname?: string,
+        name?: string,
+        patronymic?: string,
+        inn?: string,
+        birthDate?: string,
+        phoneNumber?: string,
+        cagentRelatedPersonAttributes?: string,
+        cagentTypeDetailed?: string,
+        email?: string
     }) {
-        await this.surname.fill(fields.surname || '');
-        await this.name.fill(fields.name || '');
-        await this.patronymic.fill(fields.patronymic || '');
-        await this.inn.fill(fields.inn || '');
-        await this.birthDate.fill(fields.birthDate || '');
-        await this.phoneNumber.fill(fields.phoneNumber || '');
-        await this.cagentRelatedPersonAttributes.selectOption(fields.cagentRelatedPersonAttributes || 'Выберите');
-        await this.cagentTypeDetailed.selectOption(fields.cagentTypeDetailed || 'Выберите');
+        if (fields.surname) {
+            await this.surname.fill(fields.surname);
+        }
+        if (fields.name) {
+            await this.name.fill(fields.name);
+        }
+        if (fields.patronymic) {
+            await this.patronymic.fill(fields.patronymic);
+        }
+        if (fields.inn) {
+            await this.inn.fill(fields.inn);
+        }
+        if (fields.birthDate) {
+            await this.birthDate.fill(fields.birthDate);
+        }
+        if (fields.phoneNumber) {
+            await this.phoneNumber.fill(fields.phoneNumber);
+        }
+        if (fields.cagentRelatedPersonAttributes) {
+            await this.cagentRelatedPersonAttributes.selectOption(fields.cagentRelatedPersonAttributes);
+        }
+        if (fields.cagentTypeDetailed) {
+            await this.cagentTypeDetailed.selectOption(fields.cagentTypeDetailed);
+        }
+        if (fields.email) {
+            await this.email.fill(fields.email);
+        }
     };
 }

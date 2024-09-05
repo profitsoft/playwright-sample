@@ -1,11 +1,11 @@
-import {AbstractPage} from "../../pages/AbstractPage";
 import {Locator, Page} from "@playwright/test";
+import AbstractHtmlComponent from "../AbstractHtmlComponent";
 
 /**
  * Class to work with the 'ContractSearchForm' component
  * This class contains methods to work with the fields of the 'ContractSearchForm' component
  */
-export class ContractSearchFormComponent extends AbstractPage {
+export class ContractSearchFormComponent extends AbstractHtmlComponent {
 
     // Field 'Contract number'
     public readonly contractNumber: Locator;
@@ -18,7 +18,6 @@ export class ContractSearchFormComponent extends AbstractPage {
 
     // Button 'Search'
     public readonly searchButton: Locator;
-
 
     constructor(page: Page) {
         super(page);
@@ -46,15 +45,6 @@ export class ContractSearchFormComponent extends AbstractPage {
 
     public async clickSearch() {
         await this.searchButton.click();
-    }
-
-    /**
-     * Click on the first element in the table by ID in the contract search
-     */
-    public async clickElementInTable(index: number = 1): Promise<void> {
-        await this.page.locator('td.TABELLEFIRST a')
-            .nth(index)
-            .click();
     }
 }
 
