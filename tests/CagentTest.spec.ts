@@ -94,12 +94,12 @@ test('Check responsible person', async ({
 
     // Check the data of the created responsible person
     await cagentEditPage.clickSave();
-    expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName(1)).toBe('Евтушенко Петр Иванович');
+    expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName()).toBe('Евтушенко Петр Иванович', );
 
     // Save the counterparty, check the data of the created responsible person
     await cagentEditPage.clickSave();
     await cagentViewPage.isCurrentPage();
-    expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName(1)).toBe('Евтушенко Петр Иванович');
+    expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName()).toBe('Евтушенко Петр Иванович');
 });
 
 /** The test navigates to the "Directories - Contractors - Search" module and adds a new client with an 11-digit INN,
