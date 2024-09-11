@@ -7,11 +7,12 @@ const test = baseTest.extend<{
     loginPage: LoginPage,
     myDocsPage: MyDocsPage
 }>({
-    page: async ({browser}, use) => {
-        // this test requires a  manual login
-        await use(await browser.newPage());
+    page: async ({page, context}, use) => {
+        await context.clearCookies();
+        await context.clearPermissions();
+        return use(page);
     },
-    loginPage: async ({page}, use) => {
+    loginPage: async ({page, context}, use) => {
         await use(new LoginPage(page));
     },
     myDocsPage: async ({page}, use) => {

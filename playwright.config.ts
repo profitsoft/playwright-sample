@@ -14,14 +14,13 @@ export default defineConfig({
     use: {
         trace: 'on-first-retry',
         video: 'on',
-        screenshot: 'on',
-        testIdAttribute: '',
+        testIdAttribute: ''
     },
 
     projects: [
         {
             name: 'chromium',
-            use: {...devices['Desktop Chrome'], headless: false},
+            use: {...devices['Desktop Chrome'], headless: true},
         },
 
         // {

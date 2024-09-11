@@ -12,9 +12,7 @@ const test = baseTest.extend<
         menuSelectModulePage: MenuSelectModulePage
     }
 >({
-    page: async ({browser}, use) => {
-        // Automatically log in before each test
-        const page = await browser.newPage();
+    page: async ({page}, use) => {
         let loginPage = new LoginPage(page);
         await loginPage.login();
         await use(page);
