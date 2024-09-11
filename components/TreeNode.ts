@@ -1,4 +1,4 @@
-import AbstractHtmlComponent from "../html-components/AbstractHtmlComponent";
+import AbstractHtmlComponent from "./AbstractHtmlComponent";
 import {Locator, Page} from "@playwright/test";
 
 /**

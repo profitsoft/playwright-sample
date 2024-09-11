@@ -1,4 +1,4 @@
-import {CagentSearchFormComponent} from "../../html-components/cagent/CagentSearchFormComponent";
+import {CagentSearchFormComponent} from "../../components/cagent/CagentSearchFormComponent";
 import {Locator, Page} from "@playwright/test";
 import {AbstractPage} from "../AbstractPage";
 

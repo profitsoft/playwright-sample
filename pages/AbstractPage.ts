@@ -1,5 +1,5 @@
 import {expect, Locator, Page} from "@playwright/test";
-import {Message} from "../html-components/Message";
+import {Message} from "../components/Message";
 
 /**
  * Base class of objects

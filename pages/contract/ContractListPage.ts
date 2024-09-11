@@ -1,5 +1,5 @@
 import {AbstractPage} from "../AbstractPage";
-import {ContractSearchFormComponent} from "../../html-components/contracts/ContractSearchFormComponent";
+import {ContractSearchFormComponent} from "../../components/contracts/ContractSearchFormComponent";
 import {Page} from "@playwright/test";
 
 /**

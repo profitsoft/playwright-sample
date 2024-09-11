@@ -1,6 +1,6 @@
 import {AbstractPage} from "../AbstractPage";
 import {Locator, Page} from "@playwright/test";
-import CagentTabs from "../../html-components/cagent/tabs/CagentTabs";
+import CagentTabs from "../../components/cagent/tabs/CagentTabs";
 
 /**
  * Page for the 'Counterparty' module - View

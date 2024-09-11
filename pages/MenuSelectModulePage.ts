@@ -1,6 +1,6 @@
 import {Page} from "@playwright/test";
-import {CagentMenu} from "../html-components/menu/CagentMenu";
-import {ContractMenu} from "../html-components/menu/ContractMenu"
+import {CagentMenu} from "../components/menu/CagentMenu";
+import {ContractMenu} from "../components/menu/ContractMenu"
 import {AbstractPage} from "./AbstractPage";
 
 
