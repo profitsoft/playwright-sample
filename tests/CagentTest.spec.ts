@@ -1,9 +1,33 @@
-import {expect, test as baseTest} from "@playwright/test";
-import {test} from "../setup.playwright";
+import {expect} from "@playwright/test";
+import {test as baseTest} from "../fixture.playwright"
+import {CagentCreatePage} from "../pages/cagent/CagentCreatePage";
+import {CagentEditPage} from "../pages/cagent/CagentEditPage";
+import {CagentListPage} from "../pages/cagent/CagentListPage";
+import {CagentViewPage} from "../pages/cagent/CagentViewPage";
 
-test.beforeEach('Auth', async ({loginPage}) => {
-    await loginPage.login();
+// Extend the test with the necessary pages
+const test = baseTest.extend<
+    {
+        cagentCreatePage: CagentCreatePage,
+        cagentEditPage: CagentEditPage,
+        cagentListPage: CagentListPage,
+        cagentViewPage: CagentViewPage
+    }
+>({
+    cagentCreatePage: async ({page}, use) => {
+        await use(new CagentCreatePage(page));
+    },
+    cagentEditPage: async ({page}, use) => {
+        await use(new CagentEditPage(page));
+    },
+    cagentListPage: async ({page}, use) => {
+        await use(new CagentListPage(page));
+    },
+    cagentViewPage: async ({page}, use) => {
+        await use(new CagentViewPage(page));
+    }
 });
+
 
 /**
  * Test navigates to the "Counterparties - Search" module, creates, and saves a counterparty
@@ -57,8 +81,7 @@ test('Check responsible person', async ({
                                             menuSelectModulePage,
                                             cagentListPage,
                                             cagentViewPage,
-                                            cagentEditPage,
-                                            page
+                                            cagentEditPage
                                         }) => {
     // Transition to a counterparty with the "Partner" relationship
     await menuSelectModulePage.cagentMenu.menuCagentSearch();
@@ -94,7 +117,7 @@ test('Check responsible person', async ({
 
     // Check the data of the created responsible person
     await cagentEditPage.clickSave();
-    expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName()).toBe('Евтушенко Петр Иванович', );
+    expect(await cagentViewPage.cagentTabs.contactPersonsTab.getResponsiblePersonName()).toBe('Евтушенко Петр Иванович',);
 
     // Save the counterparty, check the data of the created responsible person
     await cagentEditPage.clickSave();
@@ -152,10 +175,10 @@ test('Check inn validation', async ({
 
 /** The test creates an employee with a non-corporate email and checks the validation. */
 test('Create company member email validation', async ({
-                                                            menuSelectModulePage,
-                                                            cagentListPage,
-                                                            cagentCreatePage,
-                                                            cagentEditPage,
+                                                          menuSelectModulePage,
+                                                          cagentListPage,
+                                                          cagentCreatePage,
+                                                          cagentEditPage,
                                                       }) => {
     // Navigate to the "Counterparties - Search" module
     await menuSelectModulePage.cagentMenu.menuCagentSearch();
