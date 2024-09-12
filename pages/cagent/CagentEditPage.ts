@@ -1,7 +1,7 @@
 import {AbstractPage} from "../AbstractPage";
 import {Locator, Page} from "@playwright/test";
-import {CagentComponent} from "../../html-components/cagent/CagentComponent";
-import DivisionSelectComponent from "../../html-components/division/DivisionSelectComponent";
+import {CagentComponent} from "../../components/cagent/CagentComponent";
+import DivisionSelectComponent from "../../components/division/DivisionSelectComponent";
 
 /**
  * Class with elements in the counterparty editing mode

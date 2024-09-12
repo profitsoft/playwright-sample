@@ -1,9 +1,19 @@
 import {expect} from "@playwright/test";
-import {test} from "../setup.playwright";
+import {test as baseTest} from "../fixture.playwright";
+import {ContractViewPage} from "../pages/contract/ContractViewPage";
+import {ContractListPage} from "../pages/contract/ContractListPage";
 
-
-test.beforeEach('Auth', async ({loginPage}) => {
-    await loginPage.login();
+// Extend the test with the necessary pages
+const test = baseTest.extend<{
+    contractListPage: ContractListPage,
+    contractViewPage: ContractViewPage
+}>({
+    contractListPage: async ({page}, use) => {
+        await use(new ContractListPage(page));
+    },
+    contractViewPage: async ({page}, use) => {
+        await use(new ContractViewPage(page));
+    }
 });
 
 /**

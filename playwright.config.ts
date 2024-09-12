@@ -9,11 +9,12 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : undefined,
-    reporter: 'line',
+    reporter: [["allure-playwright"]],
     timeout: 5 * 60000,
     use: {
         trace: 'on-first-retry',
-        testIdAttribute: '',
+        video: 'on',
+        testIdAttribute: ''
     },
 
     projects: [
